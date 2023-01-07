@@ -9,9 +9,4 @@ services:
     restart: unless-stopped
     ports:
       - 8880:8000
-    environment:
-      # These are the defaults as defined in the Dockerfile.  You only need to set the values you wish to change
-      - MJPG_RESOLUTION=${MJPG_RESOLUTION:--1}
-      - MJPG_FPS=${MJPG_FPS:-5}
-      - JPG_RESOLUTION=${JPG_RESOLUTION:-1}
-      - SOURCE_URL=${SOURCE_URL:-rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4}
+    
