@@ -1,12 +1,24 @@
 version: '3'
 
 services:
-
   rtsp2mjpg:
+    image: eroji/rtsp2mjpg
     container_name: rtsp2mjpg
-    build: .
-    image: beardedtek/rtsp2mjpg
-    restart: unless-stopped
+    hostname: rtsp2mjpg
+    restart: always
     ports:
-      - 8880:8000
+      - 8090:8090
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # Uncomment below if you want to override default ffserver.conf
+      - ./ffserver.conf:/etc/ffserver.conf:ro
+    #command: 
+    #  - ffserver -hide_banner 
+    environment:
+      # Override the env vars below as needed
+      RTSP_URL: rtsp://freja.hiof.no:1935/rtplive/definst/hessdalen03.stream
+      FFSERVER_LOG_LEVEL: error
+      FFMPEG_LOG_LEVEL: warning
+      FFMPEG_INPUT_OPTS: -use_wallclock_as_timestamps 1
+      FFMPEG_OUTPUT_OPTS: -async 1 -vsync 1
     
