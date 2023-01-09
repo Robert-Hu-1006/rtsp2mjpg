@@ -4,4 +4,4 @@ RUN apk add curl bash ffmpeg && \
 COPY ./stream.sh /usr/bin/stream.sh
 RUN chmod +x /usr/bin/stream.sh
 COPY ./ffserver.conf /etc/ffserver.conf
-ENTRYPOINT stream.sh
+ENTRYPOINT ["stream.sh"]
